@@ -1,10 +1,10 @@
 from src.ingestion.log_reader import validate_event
 from src.ingestion.log_reader import read_logs
 
-
 file_path = "data/authentication.log"
 events = read_logs(file_path)
 
+# Function for normalize a log
 def normalize_event(event):
     normalized = event.copy()
 
@@ -15,6 +15,7 @@ def normalize_event(event):
 
     return normalized
 
+# Process the logs (validate them) and normalize them
 def process_events(events):
     valid_events = []
     for event in events:
