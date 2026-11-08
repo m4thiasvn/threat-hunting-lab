@@ -28,7 +28,7 @@ def read_logs(file_path):
 
     return events
 
-# Validate the events
+# Validate the logs
 def validate_event(event):
     missing_fields = []
 
