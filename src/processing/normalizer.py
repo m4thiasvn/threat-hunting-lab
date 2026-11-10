@@ -32,6 +32,3 @@ def process_events(events):
         normalized_events.append(event)
 
     return normalized_events
-
-normalized_events = process_events(events)
-print(normalized_events)
