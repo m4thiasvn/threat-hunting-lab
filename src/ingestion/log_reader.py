@@ -20,6 +20,8 @@ def read_logs(file_path):
 
     with open(path, "r", encoding="utf-8") as file:
         for line_number, line in enumerate(file, start=1):
+            if not line.strip():
+                        continue
             try:
                 event = json.loads(line)
                 events.append(event)
