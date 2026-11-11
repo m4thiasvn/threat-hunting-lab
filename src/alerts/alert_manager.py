@@ -51,8 +51,18 @@ def save_alerts(alerts, file_path="reports/alerts.json"):
     path.parent.mkdir(parents=True, exist_ok=True)
 
     if path.exists():
-        with open(path,"r", encoding="utf-8") as file:
-            existing_alerts = json.load(file)
+        try:
+            with open(path, "r", encoding="utf-8") as file:
+                existing_alerts = json.load(file)
+
+            if not isinstance(existing_alerts, list):
+                raise ValueError("Invalid alerts format: expected a list")
+
+        except (json.JSONDecodeError, ValueError) as error:
+            raise ValueError(
+            f"Cannot read alerts file {path}: {error}"
+        ) from error
+
     else:
         existing_alerts = []
 
