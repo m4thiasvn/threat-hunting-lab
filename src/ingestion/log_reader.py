@@ -21,7 +21,7 @@ def read_logs(file_path):
     with open(path, "r", encoding="utf-8") as file:
         for line_number, line in enumerate(file, start=1):
             if not line.strip():
-                        continue
+                continue
             try:
                 event = json.loads(line)
                 events.append(event)
@@ -34,9 +34,13 @@ def read_logs(file_path):
 def validate_event(event):
     missing_fields = []
 
+    if not isinstance(event, dict):
+        return REQUIRED_FIELDS.copy()
+
     for field in REQUIRED_FIELDS:
         if field not in event or event[field] == "" or event[field] is None:
             missing_fields.append(field)
+
     return missing_fields
     
 
