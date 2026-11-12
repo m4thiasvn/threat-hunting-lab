@@ -1,3 +1,4 @@
+import json
 from src.ingestion.log_reader import read_logs
 from src.processing.normalizer import process_events
 from src.detection.brute_force import detect_brute_force
@@ -16,10 +17,28 @@ def main():
     for alert in alerts:
         final_alerts.append(create_alert(alert))
 
-    save_alerts(final_alerts, file_path="reports/alerts.json")
+    updated_alerts = save_alerts(final_alerts,file_path="reports/alerts.json")
 
-    print(final_alerts)
+    with open("reports/alerts.json", "r", encoding="utf-8") as file:
+        stored_alerts = json.load(file)
 
+    print("\n======================================= ALERTAS ALMACENADAS =======================================")
+    if stored_alerts:
+        for alert in stored_alerts:
+                print("\n", alert)
+    else:
+        print("NO HAY ALERTAS ALMACENADAS")    
+
+    print("\n======================================= ALERTAS ACTUALIZADAS =======================================")
+    if updated_alerts:
+        for alert in updated_alerts:
+            print("\n", alert)
+    else:
+        print("\nNO HAY ALERTAS ACTUALIZADAS.")
+
+    print("\n======================================== ALERTAS RECIENTES =======================================")
+    for alert in final_alerts:
+        print("\n",alert)
 
 if __name__ == "__main__":
     main()
