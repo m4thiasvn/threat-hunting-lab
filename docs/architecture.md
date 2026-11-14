@@ -1,31 +1,48 @@
-# Arquitectura del Threat Hunting Lab
+# Threat Hunting Lab Architecture
 
-## Descripción
+## Overview
 
-El proyecto utiliza una arquitectura modular.
+The project uses a modular architecture designed to analyze security events and identify suspicious behavior.
 
-Cada componente tiene una responsabilidad específica.
+Each component has a specific responsibility.
 
-## Componentes
+## Components
 
 ### Ingestion
-Lee registros de seguridad desde archivos JSON.
+Reads security events from JSON log files.
 
 ### Processing
-Valida y normaliza los eventos.
+Validates and normalizes incoming events.
 
 ### Detection
-Evalúa los eventos mediante reglas configurables.
-
-### Alerts
-Genera y clasifica alertas.
+Analyzes events using detection rules, such as brute-force detection.
 
 ### Investigation
-Permite analizar alertas y documentar evidencias.
+Enriches alerts through IP analysis and external IP reputation checks using AbuseIPDB.
+
+### Alerts
+Generates, classifies, and manages security alerts, including deduplication and severity escalation.
+
+### Reports
+Stores generated alerts and investigation results in JSON files.
 
 ### Utils
-Contiene funciones auxiliares compartidas.
+Contains shared utility functions.
 
-## Flujo de procesamiento
+## Processing Flow
 
-Logs JSON → Ingestion → Processing → Detection → Alerts → Investigation
+```text
+JSON Logs
+    ↓
+Ingestion
+    ↓
+Processing
+    ↓
+Detection
+    ↓
+Investigation
+    ↓
+Alerts
+    ↓
+Reports
+```
