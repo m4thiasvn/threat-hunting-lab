@@ -1,65 +1,119 @@
 # Threat Hunting Lab
 
-Laboratorio práctico de ciberseguridad enfocado en desarrollar habilidades de análisis SOC y Threat Hunting mediante Python.
+A practical cybersecurity lab focused on developing Security Operations Center (SOC) analysis and Threat Hunting skills using Python.
 
-## Objetivo
+## Project Objective
 
-Construir un sistema capaz de recopilar, procesar y analizar eventos de seguridad para identificar comportamientos sospechosos y generar alertas.
+Build a modular security analysis system capable of collecting, processing, and analyzing security events to identify suspicious behavior, investigate potential threats, and generate security alerts.
 
-## Tecnologías
+## Technologies
 
 - Python 3.12
 - JSON
+- Requests
+- Python-dotenv
+- AbuseIPDB API
 - Git
-- Docker (integración prevista para la etapa final)
-- pytest (pruebas automatizadas)
+- pytest
+- Docker (planned for the final stage)
 
-## Arquitectura
+## Architecture
 
 ```text
 threat-hunting-lab/
-├── data/               # Registros de seguridad
+├── data/                   # Security logs
 ├── src/
-│   ├── ingestion/      # Ingesta de eventos
-│   ├── processing/     # Procesamiento y normalización
-│   ├── detection/      # Motor de detección
-│   ├── alerts/         # Gestión de alertas
-│   ├── investigation/  # Investigación de incidentes
-│   └── utils/          # Funciones auxiliares
-├── rules/              # Reglas de detección
-├── reports/            # Informes SOC
-├── tests/              # Pruebas automatizadas
-├── docs/               # Documentación
+│   ├── ingestion/          # Log ingestion
+│   ├── processing/         # Event validation and normalization
+│   ├── detection/          # Threat detection engine
+│   ├── alerts/             # Alert management
+│   ├── investigation/      # IP analysis and reputation checks
+│   └── utils/              # Shared utility functions
+├── rules/                  # Detection rules
+├── reports/                # SOC reports and alerts
+├── tests/                  # Automated tests
+├── docs/                   # Project documentation
 ├── requirements.txt
+├── main.py
 ├── README.md
 └── .gitignore
 ```
 
-## Detecciones previstas
+## Implemented Features
 
-- Ataques de fuerza bruta.
-- Intentos de autenticación fallidos repetidos.
-- Password spraying.
-- Actividad sospechosa de usuarios.
-- Direcciones IP sospechosas.
+- JSON log ingestion.
+- Event validation and normalization.
+- Brute-force attack detection.
+- Detection of repeated failed login attempts.
+- Automatic alert generation and severity classification.
+- Alert deduplication and severity escalation.
+- IP address classification (public, private, loopback, reserved, and invalid).
+- IP reputation checks using the AbuseIPDB API.
+- Automated unit and integration testing.
 
-## Estado del proyecto
+## Project Roadmap
 
-En desarrollo.
+- [x] Initial environment setup.
+- [x] JSON log ingestion.
+- [x] Event normalization.
+- [x] Threat detection engine.
+- [x] Alert management system.
+- [x] Alert investigation and IP reputation analysis.
+- [ ] SOC report generation.
+- [ ] Documentation updates.
+- [ ] Docker integration.
+- [ ] Final testing and project integration.
 
-- [x] Preparación inicial del entorno.
-- [ ] Ingesta de registros JSON.
-- [ ] Normalización de eventos.
-- [ ] Motor de detección.
-- [ ] Sistema de alertas.
-- [ ] Investigación de incidentes.
-- [ ] Generación de informes.
-- [ ] Integración con Docker.
+## Installation
 
-## Ejecución
+Clone the repository:
 
-La guía de instalación y ejecución se completará conforme avance el desarrollo.
+```bash
+git clone <repository-url>
+cd threat-hunting-lab
+```
 
-## Aviso
+Create and activate a virtual environment:
 
-Este proyecto utiliza datos simulados y tiene fines educativos. No está diseñado para sustituir una plataforma SIEM de producción.
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Configuration
+
+The project uses AbuseIPDB for public IP reputation checks.
+
+Create a `.env` file in the project root and configure your API key:
+
+```env
+ABUSEIPDB_API_KEY=your_api_key
+```
+
+Never commit your `.env` file or expose your API key.
+
+## Execution
+
+Run the main program:
+
+```bash
+python main.py
+```
+
+## Testing
+
+Run the complete automated test suite:
+
+```bash
+python -m pytest -v
+```
+
+## Disclaimer
+
+This project uses simulated security data and is intended for educational purposes only. It is not designed to replace a production SIEM platform.
