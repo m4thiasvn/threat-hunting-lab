@@ -237,19 +237,6 @@ Run automated tests inside Docker:
 docker run --rm threat-hunting-lab python -m pytest -v
 ```
 
-## Project Roadmap
-
-- [x] Initial environment setup.
-- [x] JSON log ingestion.
-- [x] Event normalization.
-- [x] Threat detection engine.
-- [x] Alert management system.
-- [x] IP investigation and reputation analysis.
-- [x] Automated SOC report generation.
-- [x] Documentation.
-- [x] Docker integration.
-- [x] Automated testing inside Docker.
-- [ ] Final integration review.
 
 ## Disclaimer
 
